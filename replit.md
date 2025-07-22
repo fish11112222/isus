@@ -13,8 +13,16 @@ Technical Stack: TERN Stack (TypeScript + Express.js + React + Node.js) with Pos
 
 ## Recent Changes
 
-### 2025-01-22 - Migration & Mobile Optimization
+### 2025-01-22 - Vercel Deployment Ready & Migration Complete
 - ✅ เสร็จสิ้นการ migrate จาก Replit Agent ไป Replit environment สำเร็จ
+- ✅ ปรับโครงสร้างโปรเจคให้รองรับ Vercel deployment
+- ✅ สร้าง Vercel Functions สำหรับ API endpoints (messages, users, auth, themes)
+- ✅ แยก frontend และ backend configuration
+- ✅ สร้าง vercel.json และ deployment documentation
+- ✅ ปรับ client code ให้รองรับ production API URLs
+- ✅ เพิ่ม README.md พร้อมคู่มือ deploy ขั้นตอนครบถ้วน
+
+### 2025-01-22 - Mobile Optimization (Earlier)
 - ✅ แก้ไข header ล้นออกจากหน้าจอในมือถือ - ลดขนาดปุ่มและ spacing
 - ✅ ปรับปรุงระบบค้นหารูปภาพให้ตรงกับคำค้นหามากขึ้น (เพิ่ม "Chinjung", "temple", "architecture")
 - ✅ ปรับขนาด Theme selector ให้เล็กลงในมือถือ (6x6 px)

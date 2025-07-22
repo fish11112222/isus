@@ -12,7 +12,10 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
-  const res = await fetch(url, {
+  const baseUrl = getApiUrl();
+  const fullUrl = `${baseUrl}${url}`;
+  
+  const res = await fetch(fullUrl, {
     method,
     headers: data ? { "Content-Type": "application/json" } : {},
     body: data ? JSON.stringify(data) : undefined,
@@ -23,13 +26,27 @@ export async function apiRequest(
   return res;
 }
 
+// Get API base URL based on environment
+const getApiUrl = () => {
+  if (typeof window !== 'undefined') {
+    // Client-side - use environment variable or current origin
+    return (import.meta.env as any).VITE_API_URL || window.location.origin;
+  } else {
+    // Server-side
+    return process.env.VITE_API_URL || 'http://localhost:3000';
+  }
+};
+
 type UnauthorizedBehavior = "returnNull" | "throw";
 export const getQueryFn: <T>(options: {
   on401: UnauthorizedBehavior;
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    const res = await fetch(queryKey.join("/") as string, {
+    const baseUrl = getApiUrl();
+    const url = `${baseUrl}${queryKey.join("/")}`;
+    
+    const res = await fetch(url, {
       credentials: "include",
     });
 
