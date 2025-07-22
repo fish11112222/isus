@@ -9,6 +9,7 @@ This is a modern full-stack chat application built with React, Express, and Type
 Preferred communication style: Simple, everyday language.
 Language: Thai (ภาษาไทย)
 UI/UX Preference: Complete and detailed profile system with statistics and contact information
+Technical Stack: TERN Stack (TypeScript + Express.js + React + Node.js) with PostgreSQL
 
 ## Recent Changes
 
