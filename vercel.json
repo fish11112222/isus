@@ -1,22 +1,51 @@
 {
   "version": 2,
-  "name": "thai-chat-app",
-  "buildCommand": "cd client && npm install && npm run build",
-  "outputDirectory": "client/dist",
-  "framework": "vite",
-  "functions": {
-    "api/**/*.ts": {
-      "runtime": "@vercel/node"
+  "builds": [
+    {
+      "src": "api/messages.ts",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "api/users.ts", 
+      "use": "@vercel/node"
+    },
+    {
+      "src": "api/auth.ts",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "api/chat/theme.ts",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "client/**/*",
+      "use": "@vercel/static-build",
+      "config": {
+        "buildCommand": "cd client && npm install && npm run build",
+        "outputDirectory": "dist"
+      }
     }
-  },
+  ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "src": "/api/messages",
+      "dest": "/api/messages"
+    },
+    {
+      "src": "/api/users",
+      "dest": "/api/users"
+    },
+    {
+      "src": "/api/auth", 
+      "dest": "/api/auth"
+    },
+    {
+      "src": "/api/chat/theme",
+      "dest": "/api/chat/theme"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/client/dist/index.html"
     }
   ]
 }
